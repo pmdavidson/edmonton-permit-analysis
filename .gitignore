@@ -2,7 +2,8 @@
 data/
 
 # Python outputs
-outputs/*
+outputs/*.csv
+outputs/*.txt
 
 # Virtual environment
 .venv/
