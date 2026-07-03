@@ -18,33 +18,33 @@ The answer has direct operational implications. The city can use these findings 
 
 ## Key Findings
 
-**City-wide baseline**
-- Average resolution time: **3.21 days** across all closed requests requiring follow-up
-- **6.79% of requests** take more than 7 days to resolve
+**Most requests are resolved quickly, but a meaningful minority are not.**
 
-**Highest-delay service categories**
-- Maintenance - Graffiti spiked to approximately **295 days average in 2024** before dropping sharply, a sign of a temporary backlog that was eventually cleared
-- Maintenance - Sidewalk/Concrete, Pavement Markings, and Safety and Security consistently average 40 to 75 days
-- Bylaw Complaints and Park Signs show persistently elevated resolution times across all years
-
-![Average Resolution Time by Year and Service Category](outputs/trends.png)
+Across all service requests requiring active follow-up, the city-wide average resolution time is 3.21 days. However, 6.79% of requests take more than 7 days -- and within that group, some categories average months. This means the system works well for the majority of residents, but a specific subset of request types consistently fail to meet reasonable turnaround expectations. The distribution is heavily right-skewed: most requests close fast, while a long tail of complex or deprioritized requests drags on.
 
 ![Distribution of Resolution Times](outputs/resolution_dist.png)
 
+**Certain service categories have structural delay problems, not just occasional slowdowns.**
+
+Maintenance categories involving physical infrastructure -- sidewalks, pavement markings, park signs, graffiti -- average 40 to 75 days across all years. This is not noise. These categories require field crews, equipment, and scheduling, and the data shows they consistently fall behind. Bylaw Complaints average 16 days with 45% of requests exceeding 7 days, which matters because bylaw issues often affect quality of life for multiple residents and escalate when unresolved.
+
+The most striking case is Maintenance - Graffiti, which spiked to 295 days average in 2024 before dropping sharply. A near-tenfold increase in a single year points to a specific operational failure -- not a gradual trend -- and the recovery in 2025 suggests it was eventually addressed, but without a documented root cause it could recur.
+
+![Average Resolution Time by Year and Service Category](outputs/trends.png)
+
 ![Resolution Time by Service Category](outputs/service_category_boxplot.png)
 
-**Neighbourhood disparities**
-- River Valley Windermere averages **25 days**, nearly 8x the city average
-- River Valley neighbourhoods dominate the top 20 slowest, likely due to complex access and maintenance requirements
-- South Edmonton Common and Mill Woods Town Centre also appear in the top 20 despite being high-volume commercial areas
+**Where you live affects how fast your request gets resolved.**
+
+River Valley Windermere averages 25 days -- nearly 8x the city-wide average of 3.21 days. Seven of the top 20 slowest neighbourhoods are River Valley areas, which reflects genuine operational constraints: difficult terrain, limited vehicle access, and seasonal restrictions make maintenance inherently harder there. However, the data also shows that South Edmonton Common and Mill Woods Town Centre -- high-traffic commercial areas with straightforward access -- appear in the top 20. That is harder to explain by geography alone and warrants a closer look at how requests in those areas are triaged and assigned.
 
 ![Top 20 Neighbourhoods by Average Resolution Time](outputs/neighbourhood_delays.png)
 
-**What predicts resolution time (OLS Regression)**
-- **Referral type** is the dominant predictor. Requests escalated to a department take significantly longer than those resolved with information provided directly
-- **Interaction channel** has a negative coefficient, meaning digital channels (app, online) resolve faster than phone
-- **Summer** requests take slightly longer, consistent with higher maintenance demand
-- Neighbourhood and service category show smaller but consistent effects
+**How a request is handled matters more than where it comes from.**
+
+The OLS regression identifies referral type as the single strongest predictor of resolution time. When a 311 agent resolves a request at first contact -- providing information directly -- it closes fast. When it gets referred to a city department, resolution time increases substantially. This makes intuitive sense: referrals add handoff time, departmental queues, and coordination overhead. But it also means a significant portion of delays are not inherent to the request type -- they are a function of process design.
+
+The second most important finding is that interaction channel has a negative coefficient, meaning requests submitted digitally (via the app or online) resolve faster than those submitted by phone. This is likely because digital submissions are structured and pre-categorized, reducing processing time, while phone calls require manual transcription and classification by an agent.
 
 ![Regression Coefficients](outputs/coefficient_plot.png)
 
@@ -54,13 +54,13 @@ The answer has direct operational implications. The city can use these findings 
 
 ## Recommendations
 
-**1. Prioritize digital channel adoption.** The regression shows interaction channel is one of the strongest negative predictors of resolution time, meaning requests submitted through the app or online resolve faster than phone calls. The city should invest in promoting the 311 app in high-volume neighbourhoods to reduce resolution times without adding staff.
+**1. Reduce unnecessary referrals through first-contact resolution training.** Referral type is the dominant predictor of resolution time in the model. Every unnecessary referral adds queue time and coordination overhead. The city should audit which request types are most frequently referred when they could be resolved at first contact, and expand agent authority or decision-making tools accordingly. Even a 10% reduction in referral rate across high-volume categories would meaningfully improve average resolution times.
 
-**2. Investigate the 2024 Maintenance - Graffiti backlog.** Average resolution time spiked to 295 days in 2024 before returning to normal levels. This pattern suggests a staffing or process disruption rather than a structural problem. A post-mortem on what changed in 2024 and 2025 would clarify whether the improvement is sustainable.
+**2. Promote digital channels in high-volume neighbourhoods.** Requests submitted through the app or online resolve faster than phone calls, likely because they arrive pre-structured and pre-categorized. The city should run targeted outreach campaigns in neighbourhoods with high 311 phone volume to shift submissions to digital channels. This improves resolution times without requiring additional staff.
 
-**3. Review referral handling processes.** Referral type is the dominant predictor of resolution time. Requests that get referred to a department take significantly longer than those resolved at first contact. Reducing unnecessary referrals through better first-contact training or expanded agent authority could have the largest overall impact on resolution times.
+**3. Conduct a post-mortem on the 2024 Maintenance - Graffiti backlog.** A 295-day average in 2024 followed by a sharp recovery in 2025 indicates a specific operational failure rather than a gradual trend. Understanding what caused it -- and what fixed it -- is essential to preventing recurrence. If the recovery was due to a one-time resource injection rather than a process improvement, the backlog risk remains.
 
-**4. Target River Valley maintenance resources.** River Valley neighbourhoods account for 7 of the top 20 slowest areas, averaging 12 to 25 days. Given the access and terrain challenges, the city should assess whether current maintenance scheduling and crew allocation for River Valley areas reflects actual demand.
+**4. Set differentiated service level targets by category.** The current data shows that treating all requests the same way is not realistic. Physical infrastructure maintenance genuinely takes longer than information requests. The city should establish and publish category-specific SLA targets based on historical performance, which would make delay reporting more meaningful and give operations managers clearer accountability benchmarks.
 
 ---
 
